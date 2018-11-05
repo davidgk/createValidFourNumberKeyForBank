@@ -1,5 +1,6 @@
 ## How to create a valid Four digit Key
 
+### Rules
 * No deberá contener más de tres caracteres numéricos iguales.
 
 * No deberá contener más de tres números consecutivos (ascendentes o descendentes).
@@ -16,4 +17,13 @@
 
 * Además tomá en consideración que:
 
-* No podrá ser la última clave utilizada. 
+* No podrá ser la última clave utilizada.
+
+### How to run it
+En el path del proyecto
+* python src/valid_creator_four_number_key.py
+    * Opciones:
+        * Cargar los datos
+        * agregar por parametro los primeros 4 y ultimos 4 valores del dni, la fecha de nacimiento y la ultima clave ( para uqe no la tenga en cuenta)    
+        
+        
