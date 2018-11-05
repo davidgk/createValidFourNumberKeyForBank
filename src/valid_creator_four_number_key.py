@@ -1,9 +1,12 @@
+import os
 import sys
-
 from src.wrong_key_exception import WrongKeyException
 
 
 class ValidCreatorFourNumberKey(object):
+    """
+    Just a way to choose a valid a number with four digit to be used for Santander Rio Key
+    """
 
     def __init__(self, first_4_digits, last_4_digits, my_birth_date, last_key = '0000'):
         self.first_4_digits = first_4_digits
@@ -18,18 +21,6 @@ class ValidCreatorFourNumberKey(object):
             if self.is_valid(value):
                 self.values.append(value)
         self.print_all_valid_values()
-
-    def print_all_valid_values(self):
-        print self.values[0:1000]
-        print self.values[1000:2000]
-        print self.values[2000:3000]
-        print self.values[3000:4000]
-        print self.values[4000:5000]
-        print self.values[5000:6000]
-        print self.values[6000:7000]
-        print self.values[7000:8000]
-        print self.values[8000:9000]
-        print self.values[9000:10000]
 
     def create_valid_format_str_value(self, x):
         value_str = str(x)
@@ -52,7 +43,6 @@ class ValidCreatorFourNumberKey(object):
         except WrongKeyException as we:
             print str(we)
             return False
-
 
     def evaluate_last_key(self, value):
         if (value == self.last_key):
@@ -105,18 +95,33 @@ class ValidCreatorFourNumberKey(object):
     def evaluate_year(self, to_evaluate):
         if to_evaluate == self.year:
             raise WrongKeyException('You sent a value equals your birthday year for value : %s' % to_evaluate)
+        return True
 
     def evaluate_month_day(self, to_evaluate):
         day_month = (to_evaluate == (self.day + self.month))
         month_day = (to_evaluate == (self.month + self.day))
         if day_month or month_day:
             raise WrongKeyException('You sent a value with your birthday day and month for value : %s' % to_evaluate)
+        return True
 
     def evaluate_month_year(self, to_evaluate):
         year_month = (to_evaluate == (self.year[2:4] + self.month))
         month_year = (to_evaluate == (self.month + self.year[2:4]))
         if year_month or month_year:
             raise WrongKeyException('You sent a a value with your birthday year and month for value : %s' % to_evaluate)
+        return True
+
+    def print_all_valid_values(self):
+        print self.values[0:1000]
+        print self.values[1000:2000]
+        print self.values[2000:3000]
+        print self.values[3000:4000]
+        print self.values[4000:5000]
+        print self.values[5000:6000]
+        print self.values[6000:7000]
+        print self.values[7000:8000]
+        print self.values[8000:9000]
+        print self.values[9000:10000]
 
 if __name__ == '__main__':
     if len(sys.argv) < 5:

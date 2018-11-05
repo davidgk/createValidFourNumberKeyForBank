@@ -21,9 +21,13 @@
 
 ### How to run it
 En el path del proyecto
-* python src/valid_creator_four_number_key.py
+* 1.- export PYTHONPATH=$(pwd) 
+* 2.- python src/valid_creator_four_number_key.py
     * Opciones:
         * Cargar los datos
-        * agregar por parametro los primeros 4 y ultimos 4 valores del dni, la fecha de nacimiento y la ultima clave ( para uqe no la tenga en cuenta)    
+        * agregar por parametro los primeros 4 y ultimos 4 valores del dni, la fecha de nacimiento (formato aaaa/mm/dd) y la ultima clave ( para uqe no la tenga en cuenta)
+            ejemplo
+            python ./src/valid_creator_four_number_key.py 2110 1122 1983/11/24 1111
+
         
         
