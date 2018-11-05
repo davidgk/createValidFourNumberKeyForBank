@@ -44,7 +44,7 @@ class ValidCreatorFourNumberKeyTest(TestCase):
     def test_when_if_last_key_is_equal_than_last_key_should_raise_exception(self):
         number_creator = ValidCreatorFourNumberKey('1111', '9999', '1913/07/03', '1234')
         self.evaluate_condition((lambda:number_creator.evaluate_last_key('1234'))
-                                , 'New Key is equal than last key')
+                                , 'New Key is equal than last key for value : 1234')
 
 
     def test_when_i_sent_a_value_with_more_than_three_zeros_should_not_be_valid(self):
@@ -53,7 +53,7 @@ class ValidCreatorFourNumberKeyTest(TestCase):
         values_wrongs = ['0000', '1111', '2222', '3333', '4444', '5555', '6666', '7777', '8888', '9999']
         for value in values_wrongs:
             self.evaluate_condition((lambda: number_creator.evaluate_repeated_numbers(value))
-                                    , expected_error_msg)
+                                    , expected_error_msg + ' for value : ' + value)
 
     def test_when_i_sent_a_value_with_consecutive_numbers_should_not_be_valid(self):
         number_creator = ValidCreatorFourNumberKey('1111', '9999', '1913/07/03')
@@ -61,18 +61,18 @@ class ValidCreatorFourNumberKeyTest(TestCase):
         values_wrongs = ['1230', '0123']
         for value in values_wrongs:
             self.evaluate_condition((lambda: number_creator.is_valid_if_not_contains_consecutive_numbers(value))
-                                    , expected_error_msg)
+                                    , expected_error_msg + ' for value : ' + value)
 
 
     def test_when_i_sent_a_value_equals_first_4digit_should_raise_exc(self):
         number_creator = ValidCreatorFourNumberKey('2010', '1242', '1913/07/03')
         self.evaluate_condition((lambda: number_creator.is_valid_if_not_first_or_last_document('2010'))
-                                , 'You sent a a value equals your first four digits from your doc')
+                                , 'You sent a a value equals your first four digits from your doc for value : 2010')
 
     def test_when_i_sent_a_value_equals_last_4digit_should_raise_exc(self):
         number_creator = ValidCreatorFourNumberKey('2010', '1242', '1913/07/03')
         self.evaluate_condition((lambda: number_creator.is_valid_if_not_first_or_last_document('1242'))
-                                , 'You sent a a value equals your last four digits from your doc')
+                                , 'You sent a a value equals your last four digits from your doc for value : 1242')
 
     def test_when_i_sent_a_value_starting_with_19_or20_should_not_be_valid(self):
         number_creator = ValidCreatorFourNumberKey('2010', '1242', '1913/07/03')
@@ -80,34 +80,34 @@ class ValidCreatorFourNumberKeyTest(TestCase):
         values_wrongs = ['1930', '2023']
         for value in values_wrongs:
             self.evaluate_condition((lambda: number_creator.is_valid_if_not_start_with_19_nor_20(value))
-                                    , expected_error_msg)
+                                    , expected_error_msg + ' for value : ' + value)
 
     def test_when_i_sent_a_value_with_birth_year_should_not_be_valid(self):
         number_creator = ValidCreatorFourNumberKey('2010', '1242', '1973/07/03')
         self.evaluate_condition((lambda: number_creator.is_valid_if_not_contains_birthday_data('1973'))
-                                , 'You sent a value equals your birthday year')
+                                , 'You sent a value equals your birthday year for value : 1973')
 
 
     def test_when_i_sent_a_value_with_month_day_should_not_be_valid(self):
         number_creator = ValidCreatorFourNumberKey('2010', '1242', '1973/07/03')
         self.evaluate_condition((lambda: number_creator.is_valid_if_not_contains_birthday_data('0703'))
-                                , 'You sent a value with your birthday day and month')
+                                , 'You sent a value with your birthday day and month for value : 0703')
 
 
     def test_when_i_sent_a_value_with_day_month_should_not_be_valid(self):
         number_creator = ValidCreatorFourNumberKey('2010', '1242', '1973/07/03')
         self.evaluate_condition((lambda: number_creator.is_valid_if_not_contains_birthday_data('0307'))
-                                , 'You sent a value with your birthday day and month')
+                                , 'You sent a value with your birthday day and month for value : 0307')
 
     def test_when_i_sent_a_value_with_month_year_should_not_be_valid(self):
         number_creator = ValidCreatorFourNumberKey('2010', '1242', '1973/07/03')
         self.evaluate_condition((lambda: number_creator.is_valid_if_not_contains_birthday_data('0773'))
-                                , 'You sent a a value with your birthday year and month')
+                                , 'You sent a a value with your birthday year and month for value : 0773')
 
     def test_when_i_sent_a_value_with_year_monthshould_not_be_valid(self):
         number_creator = ValidCreatorFourNumberKey('2010', '1242', '1973/07/03')
         self.evaluate_condition((lambda: number_creator.is_valid_if_not_contains_birthday_data('7307'))
-                                , 'You sent a a value with your birthday year and month')
+                                , 'You sent a a value with your birthday year and month for value : 7307')
 
     def evaluate_condition(self, my_function, msg_expected):
         try:

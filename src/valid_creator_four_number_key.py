@@ -56,7 +56,7 @@ class ValidCreatorFourNumberKey(object):
 
     def evaluate_last_key(self, value):
         if (value == self.last_key):
-            raise WrongKeyException('New Key is equal than last key')
+            raise WrongKeyException('New Key is equal than last key for value : %s' % value)
         return True
 
     def evaluate_repeated_numbers(self, value):
@@ -70,7 +70,7 @@ class ValidCreatorFourNumberKey(object):
             if is_valid:
                 increment += 1
             else:
-                raise WrongKeyException('You sent some number repeated more than three times')
+                raise WrongKeyException('You sent some number repeated more than three times for value : %s' % value)
         return True
 
     def is_valid_if_not_contains_consecutive_numbers(self, to_evaluate):
@@ -81,19 +81,19 @@ class ValidCreatorFourNumberKey(object):
         first_to_third_consecutives = first_to_second and second_to_third
         second_to_fourth_consecutives = second_to_third and third_to_fourth
         if first_to_third_consecutives or second_to_fourth_consecutives:
-            raise WrongKeyException('You sent a key with consecutives values')
+            raise WrongKeyException('You sent a key with consecutives values for value : %s' % to_evaluate)
         return True
 
     def is_valid_if_not_first_or_last_document(self, to_evaluate):
         if to_evaluate == self.first_4_digits:
-            raise WrongKeyException('You sent a a value equals your first four digits from your doc')
+            raise WrongKeyException('You sent a a value equals your first four digits from your doc for value : %s' % to_evaluate)
         if to_evaluate == self.last_4_digits:
-            raise WrongKeyException('You sent a a value equals your last four digits from your doc')
+            raise WrongKeyException('You sent a a value equals your last four digits from your doc for value : %s' % to_evaluate)
         return True
 
     def is_valid_if_not_start_with_19_nor_20(self, to_evaluate):
         if to_evaluate[0:2] in ["19", '20']:
-            raise WrongKeyException('You should not sent a number starting with 19 nor 20')
+            raise WrongKeyException('You should not sent a number starting with 19 nor 20 for value : %s' % to_evaluate)
         return True
 
     def is_valid_if_not_contains_birthday_data(self, to_evaluate):
@@ -104,19 +104,19 @@ class ValidCreatorFourNumberKey(object):
 
     def evaluate_year(self, to_evaluate):
         if to_evaluate == self.year:
-            raise WrongKeyException('You sent a value equals your birthday year')
+            raise WrongKeyException('You sent a value equals your birthday year for value : %s' % to_evaluate)
 
     def evaluate_month_day(self, to_evaluate):
         day_month = (to_evaluate == (self.day + self.month))
         month_day = (to_evaluate == (self.month + self.day))
         if day_month or month_day:
-            raise WrongKeyException('You sent a value with your birthday day and month')
+            raise WrongKeyException('You sent a value with your birthday day and month for value : %s' % to_evaluate)
 
     def evaluate_month_year(self, to_evaluate):
         year_month = (to_evaluate == (self.year[2:4] + self.month))
         month_year = (to_evaluate == (self.month + self.year[2:4]))
         if year_month or month_year:
-            raise WrongKeyException('You sent a a value with your birthday year and month')
+            raise WrongKeyException('You sent a a value with your birthday year and month for value : %s' % to_evaluate)
 
 if __name__ == '__main__':
     if len(sys.argv) < 5:
